@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>URL Shortener Microservice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link href="/public/style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <section class="container">
+      <h1>Exercise Tracker.</h1>
+      <main>
+        <section class="newUser">
+          <h2>Create a new user</h2>
+          <p class="highlight">POST /api/users</p>
+          <form action="/api/users" method="post">
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="username"
+              required
+            />
+            <input type="submit" value="Submit" />
+          </form>
+        </section>
+
+        <section class="addExercise">
+          <h2>Add Exercises</h2>
+          <p class="highlight">POST /api/users/:_id/exercises</p>
+          <form id="exercise-form" method="post">
+            <input
+              type="text"
+              id="uid"
+              name="_id"
+              placeholder=":_id"
+              required
+            />
+            <input
+              type="text"
+              id="description"
+              name="description"
+              placeholder=":description*"
+              required
+            />
+            <input
+              type="text"
+              id="duration"
+              name="duration"
+              placeholder="duration (mins.)"
+              required
+            />
+            <input
+              type="text"
+              id="date"
+              name="date"
+              placeholder="date (yyy-mm-dd)"
+            />
+            <input type="submit" value="Submit" />
+          </form>
+        </section>
+      </main>
+      <footer>
+        <p>By <a href="https://twitter.com/deecaulcrick/">Dee Caulcrick</a></p>
+      </footer>
+    </section>
+    <script>
+      const exerciseForm = document.getElementById("exercise-form");
+
+      exerciseForm.addEventListener("submit", () => {
+        const userId = document.getElementById("uid").value;
+        exerciseForm.action = `/api/users/${userId}/exercises`;
+
+        exerciseForm.submit();
+      });
+    </script>
+  </body>
+</html>
